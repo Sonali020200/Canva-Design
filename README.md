@@ -11,6 +11,7 @@ This is a customizable ad Canva component built using React. It allows users to 
 
 ## Tech Stack
 - **React**: JavaScript library for building user interfaces.
+- **Canva**: Design tool for creating graphics, presentations, posters, and other visual content.
 - **Tailwind CSS**: Utility-first CSS framework for rapidly building custom designs.
 - **React Color**: Component for picking colors in React.
 - **React Font Awesome**: Font Awesome icons as React components.
