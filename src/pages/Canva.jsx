@@ -168,22 +168,23 @@ const Canva = () => {
             <div className="flex flex-col md:flex-row justify-evenly mt-10 p-4">
                 <canvas ref={canvasRef} height={1080} width={1080} className="md:mr-10 mb-10 md:mb-0" style={{ width: '90vw', height: '90vw', maxWidth: '400px', maxHeight: '400px' }} />
 
-                <div style={{ padding: "20px" }} className="md:w-96">
+                <div style={{ padding: "20px" }} className="w-full md:max-w-md lg:max-w-md xl:max-w-md">
                     <h3 className="text-xl font-bold font-sans text-center">Ad customization</h3>
-                    <p className='text-md font-sans text-gray-500 text-center mt-4'>Customise your ad and get the templates accordingly</p>
-
-                    
+                    <p className='text-md font-sans text-gray-500 text-center mt-4 md:w-96 lg:w-96 xl:w-96'>
+    Customise your ad and get the templates accordingly
+</p>             
                     <div className="flex justify-center align-center mt-5">
-                        <p className="text-sm font-sans text-gray-500 border rounded-md p-2 border-gray-400 ">
-                            Change the ad creative image </p>
-                        <input style={{ color: 'blue', marginLeft: '10px' }} type="file" accept="image/*" ref={imageRef} onChange={handleImageChange} />
+                    <p className="text-sm font-sans text-gray-500 border rounded-md p-2 border-gray-400 w-full md:max-w-md lg:max-w-md xl:max-w-md">
+    Change the ad creative image
+</p>
+
+<input className="w-full md:w-80 lg:w-80 xl:w-80" style={{ color: 'blue', marginLeft: '10px' }} type="file" accept="image/*" ref={imageRef} onChange={handleImageChange} />
+
                     </div>
 
                     <p className="text-sm font-sans text-gray-500 text-center mt-5" style={gridStyle}>
                         <hr className='mt-2' style={{ border: "1px solid" }} />Edit contents <hr className='mt-2' style={{ border: "1px solid" }} />
                     </p>
-
-                   
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mt-2 mb-2" htmlFor="username">
                             Ad Content
