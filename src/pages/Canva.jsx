@@ -73,35 +73,34 @@ const Canva = () => {
         ctx.fillStyle = backgroundColor;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        //mask
+        
         const maskImg = new Image();
         maskImg.src = data.urls.mask;
         maskImg.onload = () => {
             ctx.drawImage(maskImg, data.image_mask.x, data.image_mask.y, data.image_mask.width, data.image_mask.height);
         }
 
-        //mask stroke
+       
         const maskStrokeImg = new Image();
         maskStrokeImg.src = data.urls.stroke;
         maskStrokeImg.onload = () => {
             ctx.drawImage(maskStrokeImg, data.image_mask.x, data.image_mask.y)
         }
 
-        //image
+       
         const image = new Image();
         image.src = imageSrc;
         image.onload = () => {
             ctx.drawImage(image, data.image_mask.x + 60, data.image_mask.y + 60, data.image_mask.width - 120, data.image_mask.height - 100);
         }
 
-        //Caption
         ctx.fillStyle = data.caption.text_color;
         ctx.font = `${data.caption.font_size}px Arial`;
         ctx.textAlign = data.caption.alignment;
         ctx.textBaseline = 'top';
         wrapText(ctx, caption, data.caption.position.x, data.caption.position.y, data.caption.max_characters_per_line);
 
-        //logo
+       
         const gap = 60;
         const logoImg = new Image();
         logoImg.src = 'https://upload.wikimedia.org/wikipedia/commons/1/1e/KFC_logo_wordmark.svg';
@@ -111,7 +110,7 @@ const Canva = () => {
             ctx.drawImage(logoImg, data.caption.position.x + ctx.measureText(caption).width + gap, data.caption.position.y, logoWidth, logoHeight);
         };
 
-        //cta
+       
         const ctaWidth = 180;
         const ctaHeight = 60;
         ctx.fillRect(data.cta.position.x, data.cta.position.y, ctaWidth, ctaHeight)
@@ -158,7 +157,7 @@ const Canva = () => {
         }
     }
 
-    //style for grid
+    
     const gridStyle = {
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 1fr)',
@@ -173,7 +172,7 @@ const Canva = () => {
                     <h3 className="text-xl font-bold font-sans text-center">Ad customization</h3>
                     <p className='text-md font-sans text-gray-500 text-center mt-4'>Customise your ad and get the templates accordingly</p>
 
-                    {/* image */}
+                    
                     <div className="flex justify-center align-center mt-5">
                         <p className="text-sm font-sans text-gray-500 border rounded-md p-2 border-gray-400 ">
                             Change the ad creative image </p>
@@ -184,7 +183,7 @@ const Canva = () => {
                         <hr className='mt-2' style={{ border: "1px solid" }} />Edit contents <hr className='mt-2' style={{ border: "1px solid" }} />
                     </p>
 
-                    {/* caption */}
+                   
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mt-2 mb-2" htmlFor="username">
                             Ad Content
@@ -198,7 +197,6 @@ const Canva = () => {
                         />
                     </div>
 
-                    {/* CTA */}
                     <div className="mb-6">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="ctaInput">
                             CTA
@@ -211,7 +209,7 @@ const Canva = () => {
                             onChange={handleCtaTextChange}
                         />
                         
-                        {/* background_color */}
+                    
                         <div>
                             <label className="block text-gray-700 text-sm font-bold mt-4" htmlFor="backgroundColorInput">
                                 Choose your color
