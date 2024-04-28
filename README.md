@@ -20,11 +20,15 @@ This is a customizable ad Canva component built using React. It allows users to 
 
 ```bash
 git clone https://github.com/Sonali020200/Canva-Design.git
-
+```
+2. Install dependencies:
+```bash
 cd Canva-Design
 
 npm install
-
+```
+3. Run the development server:
+```bash
 npm start
-
+```
 
