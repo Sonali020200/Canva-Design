@@ -73,6 +73,12 @@ const Canva = () => {
         ctx.fillStyle = backgroundColor;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+        const designPatternImg = new Image();
+        designPatternImg.src = data.urls.design_pattern;
+        designPatternImg.onload = () => {
+            ctx.drawImage(designPatternImg, 0, 0);
+        };
+
         const maskImg = new Image();
         maskImg.src = data.urls.mask;
         maskImg.onload = () => {
@@ -88,7 +94,7 @@ const Canva = () => {
         const image = new Image();
         image.src = selectedImage;
         image.onload = () => {
-            ctx.drawImage(image, data.image_mask.x + 60, data.image_mask.y + 60, data.image_mask.width - 120, data.image_mask.height - 100);
+            ctx.drawImage(image, data.image_mask.x , data.image_mask.y , data.image_mask.width , data.image_mask.height );
         }
 
         ctx.fillStyle = data.caption.text_color;
