@@ -97,9 +97,9 @@ const Canva = () => {
         ctx.textBaseline = 'top';
         wrapText(ctx, caption, data.caption.position.x, data.caption.position.y, data.caption.max_characters_per_line);
 
-        const gap = 60;
+        const gap = 30;
         const logoImg = new Image();
-        logoImg.src = 'https://upload.wikimedia.org/wikipedia/commons/1/1e/KFC_logo_wordmark.svg';
+        logoImg.src = 'https://1000logos.net/wp-content/uploads/2022/06/Logo-KFC.png';
         logoImg.onload = () => {
             const logoWidth = logoImg.width / 8;
             const logoHeight = logoImg.height / 8;
