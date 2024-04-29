@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { ChromePicker } from 'react-color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-
 
 const Canva = () => {
     const data = {
@@ -34,15 +34,15 @@ const Canva = () => {
 
     };
 
-    const Coffeeimage = "https://media.istockphoto.com/id/509141291/photo/coffee-pouring-to-cup.jpg?s=1024x1024&w=is&k=20&c=2K312hvGkuYfbXKUS9ttgYwJCSPIo2jOTEqo59GUsyg=";
+    const defaultImage = "https://media.istockphoto.com/id/509141291/photo/coffee-pouring-to-cup.jpg?s=1024x1024&w=is&k=20&c=2K312hvGkuYfbXKUS9ttgYwJCSPIo2jOTEqo59GUsyg=";
 
     const [caption, setCaption] = useState(data.caption.text);
     const [ctaText, setCtaText] = useState(data.cta.text);
     const [recentColors, setRecentColors] = useState([]);
     const [backgroundColor, setBackgroundColor] = useState('#0369A1');
     const [showPicker, setShowPicker] = useState(false);
-    const imageRef = useRef('null');
-    const [imageSrc, setImageSrc] = useState(Coffeeimage);
+    const [selectedImage, setSelectedImage] = useState(defaultImage);
+    const [loading, setLoading] = useState(false);
     const canvasRef = useRef(null);
 
     const wrapText = (context, text, x, y, maxCharactersPerLine) => {
@@ -73,23 +73,20 @@ const Canva = () => {
         ctx.fillStyle = backgroundColor;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        
         const maskImg = new Image();
         maskImg.src = data.urls.mask;
         maskImg.onload = () => {
             ctx.drawImage(maskImg, data.image_mask.x, data.image_mask.y, data.image_mask.width, data.image_mask.height);
         }
 
-       
         const maskStrokeImg = new Image();
         maskStrokeImg.src = data.urls.stroke;
         maskStrokeImg.onload = () => {
             ctx.drawImage(maskStrokeImg, data.image_mask.x, data.image_mask.y)
         }
 
-       
         const image = new Image();
-        image.src = imageSrc;
+        image.src = selectedImage;
         image.onload = () => {
             ctx.drawImage(image, data.image_mask.x + 60, data.image_mask.y + 60, data.image_mask.width - 120, data.image_mask.height - 100);
         }
@@ -100,7 +97,6 @@ const Canva = () => {
         ctx.textBaseline = 'top';
         wrapText(ctx, caption, data.caption.position.x, data.caption.position.y, data.caption.max_characters_per_line);
 
-       
         const gap = 60;
         const logoImg = new Image();
         logoImg.src = 'https://upload.wikimedia.org/wikipedia/commons/1/1e/KFC_logo_wordmark.svg';
@@ -110,7 +106,6 @@ const Canva = () => {
             ctx.drawImage(logoImg, data.caption.position.x + ctx.measureText(caption).width + gap, data.caption.position.y, logoWidth, logoHeight);
         };
 
-       
         const ctaWidth = 180;
         const ctaHeight = 60;
         ctx.fillRect(data.cta.position.x, data.cta.position.y, ctaWidth, ctaHeight)
@@ -120,7 +115,7 @@ const Canva = () => {
         ctx.font = `${data.cta.font_size || 30}px Arial`;
         ctx.fillText(ctaText, data.cta.position.x + ctaWidth / 2, data.cta.position.y + ctaHeight / 2);
 
-    }, [caption, ctaText, backgroundColor, imageSrc])
+    }, [caption, ctaText, backgroundColor, selectedImage])
 
     const handleCaptionChange = (e) => {
         setCaption(e.target.value);
@@ -130,16 +125,20 @@ const Canva = () => {
         setCtaText(e.target.value);
     };
 
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
+    const handleImageUpload = (event) => {
+        setLoading(true);
+        const file = event.target.files[0];
         const reader = new FileReader();
-        reader.onload = () => {
-            setImageSrc(reader.result);
+
+        reader.onload = (e) => {
+            setSelectedImage(e.target.result);
+            setLoading(false);
         };
+
         if (file) {
             reader.readAsDataURL(file);
         }
-    }
+    };
 
     const handleColorButtonClick = (color) => {
         setBackgroundColor(color);
@@ -157,7 +156,6 @@ const Canva = () => {
         }
     }
 
-    
     const gridStyle = {
         display: 'grid',
         gridTemplateColumns: 'repeat(3, 1fr)',
@@ -171,20 +169,35 @@ const Canva = () => {
                 <div style={{ padding: "20px" }} className="w-full md:max-w-md lg:max-w-md xl:max-w-md">
                     <h3 className="text-xl font-bold font-sans text-center">Ad customization</h3>
                     <p className='text-md font-sans text-gray-500 text-center mt-4 md:w-96 lg:w-96 xl:w-96'>
-    Customise your ad and get the templates accordingly
-</p>             
-                    <div className="flex justify-center align-center mt-5">
-                    <p className="text-sm font-sans text-gray-500 border rounded-md p-2 border-gray-400 w-full md:max-w-md lg:max-w-md xl:max-w-md">
-    Change the ad creative image
-</p>
+                        Customise your ad and get the templates accordingly
+                    </p>
 
-<input className="w-full md:w-80 lg:w-80 xl:w-80" style={{ color: 'blue', marginLeft: '10px' }} type="file" accept="image/*" ref={imageRef} onChange={handleImageChange} />
-
+                    <div className=" border-[1px] p-[10px] rounded-[10px]  my-[10px] ">
+                        <label htmlFor="adImageUpload" className="icon-placeholder">
+                            <AddPhotoAlternateIcon color="primary" sx={{ fontSize: 34 }} />
+                            <p className=" inline-block">
+                                Change the ad Creative image{"    "}
+                                <span className=" underline text-blue-700 hover:cursor-pointer hover:text-blue-800">
+                                    {"  "} Select File
+                                </span>
+                            </p>
+                        </label>
+                        <input
+                            id="adImageUpload"
+                            type="file"
+                            className="hidden"
+                            onChange={handleImageUpload}
+                        />
                     </div>
 
-                    <p className="text-sm font-sans text-gray-500 text-center mt-5" style={gridStyle}>
-                        <hr className='mt-2' style={{ border: "1px solid" }} />Edit contents <hr className='mt-2' style={{ border: "1px solid" }} />
-                    </p>
+                    {loading && <p>Loading...</p>}
+
+                    <div className="text-sm font-sans text-gray-500 text-center mt-5" style={gridStyle}>
+                        <hr className='mt-2' style={{ border: "1px solid" }} />
+                        <p>Edit contents</p>
+                        <hr className='mt-2' style={{ border: "1px solid" }} />
+                    </div>
+
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mt-2 mb-2" htmlFor="username">
                             Ad Content
@@ -209,29 +222,31 @@ const Canva = () => {
                             value={ctaText}
                             onChange={handleCtaTextChange}
                         />
-                        
-                    
+
+
                         <div>
                             <label className="block text-gray-700 text-sm font-bold mt-4" htmlFor="backgroundColorInput">
                                 Choose your color
                             </label>
-                            <div className="flex space-x-2 mt-4">
+                            <div className="flex space-x-2 mt-4 mb-4">
                                 {recentColors.map((color, index) => (
                                     <button
                                         key={index}
-                                        className="w-4 h-4 rounded-full cursor-pointer"
-                                        style={{ backgroundColor: color }}
+                                        className="w-6 h-6 rounded-full cursor-pointer"
+                                        style={{ backgroundColor: color, marginRight: '4px' }}
                                         onClick={() => handleColorButtonClick(color)}
                                     />
                                 ))}
                                 <button
-    className="w-8 h-8 rounded-full cursor-pointer flex items-center justify-center bg-gray-200 hover:bg-gray-300 focus:outline-none"
-    onClick={handlePickerButtonClick}
->
-    <FontAwesomeIcon icon={faPlus} />
-</button>
-
+                                    className="w-6 h-6 rounded-full cursor-pointer flex items-center justify-center bg-gray-200 hover:bg-gray-300 focus:outline-none"
+                                    onClick={handlePickerButtonClick}
+                                    style={{ marginRight: '4px' }}
+                                >
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </button>
                             </div>
+
+
                             {showPicker && (
                                 <ChromePicker
                                     color={backgroundColor}
