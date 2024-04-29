@@ -34,7 +34,7 @@ const Canva = () => {
 
     };
 
-    const defaultImage = "https://media.istockphoto.com/id/509141291/photo/coffee-pouring-to-cup.jpg?s=1024x1024&w=is&k=20&c=2K312hvGkuYfbXKUS9ttgYwJCSPIo2jOTEqo59GUsyg=";
+    const defaultImage = "https://copilot.microsoft.com/images/blob?bcid=r5D1o2fbOfcG2g";
 
     const [caption, setCaption] = useState(data.caption.text);
     const [ctaText, setCtaText] = useState(data.cta.text);
@@ -103,18 +103,19 @@ const Canva = () => {
         ctx.textBaseline = 'top';
         wrapText(ctx, caption, data.caption.position.x, data.caption.position.y, data.caption.max_characters_per_line);
 
-        const gap = 30;
+        const gap = 60;
         const logoImg = new Image();
-        logoImg.src = 'https://1000logos.net/wp-content/uploads/2022/06/Logo-KFC.png';
+        logoImg.src = 'https://copilot.microsoft.com/images/blob?bcid=r7LcfIwLKPcGCA';
         logoImg.onload = () => {
-            const logoWidth = logoImg.width / 8;
-            const logoHeight = logoImg.height / 8;
+            const logoWidth = logoImg.width * 1.5;
+            const logoHeight = logoImg.height * 1.5;
             ctx.drawImage(logoImg, data.caption.position.x + ctx.measureText(caption).width + gap, data.caption.position.y, logoWidth, logoHeight);
         };
 
         const ctaWidth = 180;
         const ctaHeight = 60;
-        ctx.fillRect(data.cta.position.x, data.cta.position.y, ctaWidth, ctaHeight)
+        const borderRadius = 10;
+        ctx.fillRect(data.cta.position.x, data.cta.position.y, ctaWidth, ctaHeight, borderRadius)
         ctx.fillStyle = data.cta.background_color;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
