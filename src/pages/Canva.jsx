@@ -105,9 +105,9 @@ const Canva = () => {
 
         const gap = 60;
         const logoImg = new Image();
-        logoImg.src = 'https://banner2.cleanpng.com/20180627/iy/kisspng-colonel-sanders-kfc-fried-chicken-logo-restaurant-5b3324910dbb15.2983465715300783530563.jpg';
+        logoImg.src = 'https://media.tenor.com/kkb548hIQfUAAAAe/kfc-logo.png';
         logoImg.onload = () => {
-            const logoWidth = logoImg.width / 7;
+            const logoWidth = logoImg.width / 4.8;
             const logoHeight = logoImg.height /6;
             ctx.drawImage(logoImg, data.caption.position.x + ctx.measureText(caption).width + gap, data.caption.position.y, logoWidth, logoHeight);
         };
