@@ -34,7 +34,7 @@ const Canva = () => {
 
     };
 
-    const defaultImage = "https://copilot.microsoft.com/images/blob?bcid=r5D1o2fbOfcG2g";
+    const defaultImage = "https://img.freepik.com/free-photo/cup-coffee-with-heart-drawn-foam_1286-70.jpg?t=st=1714218266~exp=1714221866~hmac=c054219a6e358ca00d3e9b5620693fae0a71766891cbc324a3854b14d73a5b2c&w=740";
 
     const [caption, setCaption] = useState(data.caption.text);
     const [ctaText, setCtaText] = useState(data.cta.text);
@@ -105,10 +105,10 @@ const Canva = () => {
 
         const gap = 60;
         const logoImg = new Image();
-        logoImg.src = 'https://copilot.microsoft.com/images/blob?bcid=r7LcfIwLKPcGCA';
+        logoImg.src = 'https://banner2.cleanpng.com/20180627/iy/kisspng-colonel-sanders-kfc-fried-chicken-logo-restaurant-5b3324910dbb15.2983465715300783530563.jpg';
         logoImg.onload = () => {
-            const logoWidth = logoImg.width * 1.5;
-            const logoHeight = logoImg.height * 1.5;
+            const logoWidth = logoImg.width / 7;
+            const logoHeight = logoImg.height /6;
             ctx.drawImage(logoImg, data.caption.position.x + ctx.measureText(caption).width + gap, data.caption.position.y, logoWidth, logoHeight);
         };
 
