@@ -105,10 +105,10 @@ const Canva = () => {
 
         const gap = 60;
         const logoImg = new Image();
-        logoImg.src = 'https://media.tenor.com/kkb548hIQfUAAAAe/kfc-logo.png';
+        logoImg.src = 'https://icon2.cleanpng.com/20180417/trw/kisspng-colonel-sanders-kfc-church-s-chicken-fried-chicken-burger-king-5ad670b0392298.7834946715240029922341.jpg';
         logoImg.onload = () => {
-            const logoWidth = logoImg.width / 4.8;
-            const logoHeight = logoImg.height /6;
+            const logoWidth = logoImg.width / 2;
+            const logoHeight = logoImg.height /2.5;
             ctx.drawImage(logoImg, data.caption.position.x + ctx.measureText(caption).width + gap, data.caption.position.y, logoWidth, logoHeight);
         };
 
