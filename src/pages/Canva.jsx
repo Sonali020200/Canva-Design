@@ -22,9 +22,9 @@ class Canva extends Component {
     wrapText = (context, text, x, y, maxCharactersPerLine) => {
         let words = text.split(' ');
         let line = '';
-        let lineHeight = 44; // Assuming default font size
+        let lineHeight = 44; 
         let lines = 1;
-        const maxWidth = maxCharactersPerLine * (44 * 0.6); // Assuming default font size
+        const maxWidth = maxCharactersPerLine * (44 * 0.6); 
 
         for (let n = 0; n < words.length; n++) {
             let testLine = line + words[n] + ' ';
@@ -84,11 +84,11 @@ class Canva extends Component {
         };
 
         // Render caption
-        ctx.fillStyle = "#FFFFFF"; // Assuming default text color
-        ctx.font = "44px Arial"; // Assuming default font size and style
-        ctx.textAlign = "left"; // Assuming default alignment
+        ctx.fillStyle = "#FFFFFF"; 
+        ctx.font = "44px Arial"; 
+        ctx.textAlign = "left"; 
         ctx.textBaseline = 'top';
-        this.wrapText(ctx, this.state.caption, 50, 50, 31); // Assuming default max characters per line
+        this.wrapText(ctx, this.state.caption, 50, 50, 31); 
 
         // Render logo
         const gap = 60;
@@ -103,13 +103,13 @@ class Canva extends Component {
         // Render CTA button
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.font = "30px Arial"; // Assuming default CTA font size and style
-        const ctaTextWidth = ctx.measureText(this.state.ctaText).width; // Dynamically calculate the width of the CTA text
-        const ctaWidth = ctaTextWidth + 40; // Add padding to the CTA width
+        ctx.font = "30px Arial"; 
+        const ctaTextWidth = ctx.measureText(this.state.ctaText).width; 
+        const ctaWidth = ctaTextWidth + 40; 
         const ctaHeight = 60;
         const borderRadius = 10;
-        ctx.fillRect(190 - ctaWidth / 2, 320, ctaWidth, ctaHeight, borderRadius); // Center the CTA button horizontally
-        ctx.fillStyle = "#000000"; // Assuming default CTA background color
+        ctx.fillRect(190 - ctaWidth / 2, 320, ctaWidth, ctaHeight, borderRadius); 
+        ctx.fillStyle = "#000000"; 
         ctx.fillText(this.state.ctaText, 190, 320 + ctaHeight / 2);
     }
 
