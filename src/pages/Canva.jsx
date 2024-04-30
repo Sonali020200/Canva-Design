@@ -91,14 +91,17 @@ class Canva extends Component {
         this.wrapText(ctx, this.state.caption, 50, 50, 31); 
 
         // Render logo
-        const gap = 60;
         const logoImg = new Image();
-        logoImg.src = 'https://icon2.cleanpng.com/20180417/trw/kisspng-colonel-sanders-kfc-church-s-chicken-fried-chicken-burger-king-5ad670b0392298.7834946715240029922341.jpg';
-        logoImg.onload = () => {
-            const logoWidth = logoImg.width / 2;
-            const logoHeight = logoImg.height / 2.5;
-            ctx.drawImage(logoImg, 50 + ctx.measureText(this.state.caption).width + gap, 50, logoWidth, logoHeight);
-        };
+    logoImg.src =
+      "https://icon2.cleanpng.com/20180417/trw/kisspng-colonel-sanders-kfc-church-s-chicken-fried-chicken-burger-king-5ad670b0392298.7834946715240029922341.jpg";
+    logoImg.onload = () => {
+      const logoWidth = logoImg.width / 2;
+      const logoHeight = logoImg.height / 2.5;
+      const canvasWidth = canvas.width;
+      const logoX = canvasWidth - logoWidth - 100;
+      const logoY = 50;
+      ctx.drawImage(logoImg, logoX, logoY, logoWidth, logoHeight);
+    };
 
         // Render CTA button
         ctx.textAlign = 'center';
