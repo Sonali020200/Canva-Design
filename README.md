@@ -9,6 +9,14 @@ This is a customizable ad Canva component built using React. It allows users to 
 - Edit call-to-action (CTA) text
 - Fully responsive design for all screen sizes
 
+## Preview
+
+![Preview](./src/assets/Default_layout.png)
+
+![Preview](./src/assets/layout_afterChanging.png)
+
+![Preview](./src/assets/smallScreen_layout.png)
+
 ## Tech Stack
 - **React**: JavaScript library for building user interfaces.
 - **Canva**: Design tool for creating graphics, presentations, posters, and other visual content.
