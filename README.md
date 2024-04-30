@@ -15,6 +15,7 @@ This is a customizable ad Canva component built using React. It allows users to 
 
 ![Preview](./src/assets/layout_afterChanging.png)
 
+
 ![Preview](./src/assets/smallScreen_layout.png)
 
 ## Tech Stack
@@ -24,7 +25,7 @@ This is a customizable ad Canva component built using React. It allows users to 
 - **React Color**: Component for picking colors in React.
 - **React Font Awesome**: Font Awesome icons as React components.
 
-## Usage
+## Installation
 1. Clone the repository:
 
 ```bash
@@ -40,6 +41,12 @@ npm install
 ```bash
 npm start
 ```
+
+## Usage
+1. Upload a new image by clicking on the file input.
+2. Edit the ad content and CTA text in the input fields.
+3. Choose a background color by clicking on the color picker.
+4. View the real-time preview of the customized ad on the right side.
 
 ## Live Link
 https://canva-design-nine.vercel.app/
