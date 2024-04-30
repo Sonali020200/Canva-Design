@@ -101,15 +101,16 @@ class Canva extends Component {
         };
 
         // Render CTA button
-        const ctaWidth = 180;
-        const ctaHeight = 60;
-        const borderRadius = 10;
-        ctx.fillRect(190, 320, ctaWidth, ctaHeight, borderRadius);
-        ctx.fillStyle = "#000000"; // Assuming default CTA background color
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.font = "30px Arial"; // Assuming default CTA font size and style
-        ctx.fillText(this.state.ctaText, 190 + ctaWidth / 2, 320 + ctaHeight / 2);
+        const ctaTextWidth = ctx.measureText(this.state.ctaText).width; // Dynamically calculate the width of the CTA text
+        const ctaWidth = ctaTextWidth + 40; // Add padding to the CTA width
+        const ctaHeight = 60;
+        const borderRadius = 10;
+        ctx.fillRect(190 - ctaWidth / 2, 320, ctaWidth, ctaHeight, borderRadius); // Center the CTA button horizontally
+        ctx.fillStyle = "#000000"; // Assuming default CTA background color
+        ctx.fillText(this.state.ctaText, 190, 320 + ctaHeight / 2);
     }
 
     handleCaptionChange = (e) => {
