@@ -1,10 +1,10 @@
 import './App.css';
-import First from './pages/Canva';
+import Canva from './pages/Canva';
 
 function App() {
   return (
     <div className="App">
-      <First/>
+      <Canva/>
     </div>
   );
 }
